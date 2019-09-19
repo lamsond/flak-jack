@@ -103,7 +103,20 @@ const buildDeck = (deck) => {
     });    
 }
 
+const knuthShuffle = (deck) => {
+    let currentIndex = deck.length-1;
+    let randomIndex, temp;
+    while(currentIndex != 0){
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        temp = deck[currentIndex];
+        deck[currentIndex] = deck[randomIndex];
+        deck[randomIndex] = temp;
+        currentIndex--;
+    }
+}
+
 buildDeck(deck);
+knuthShuffle(deck);
 console.log(deck);
 
         </script>
