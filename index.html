@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>flak-jack</title>
+        <style>
+        
+        </style>
+    </head>
+    <body>
+        <div class='dashboard computer-dashboard'>
+            <div class='stats comp-stats'>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Wins</td>
+                            <td>Losses</td>
+                            <td>Percent</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>--%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class='hand comp-hand'>
+                    <div class='card down-card comp-card'>
+
+                    </div>
+                    <div class='card up-card comp-card'>
+                        
+                    </div>
+            </div>
+            <div class='choice comp-choice'>
+                <h3>Player's Descision</h3>
+            </div>
+        </div>
+        <div class='player-dashboard'>
+            <div class='dashboard player-dashboard'>
+                <div class='stats player-stats'>
+                        <div class='stats comp-stats'>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>Wins</td>
+                                            <td>Losses</td>
+                                            <td>Percent</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>--%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </div>
+                <div class='hand player-hand'>
+                        <div class='card down-card player-card'>
+
+                        </div>
+                        <div class='card up-card player-card'>
+                            
+                        </div>
+                </div>
+                <div class='choice player-choice'>
+                    <button class='hit-btn btn'>HIT</button>
+                    <button class='stand-btn btn'>STAND</button>
+                </div>
+            </div>
+            <div class='control-panel'>
+                <button class='deal-btn btn'>DEAL</button>
+            </div>
+        </div>
+        <script>
+const deck = [];
+const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+const suits = ['\u2660', '\u2665', '\u2666', '\u2663'];
+
+const calcValue = (rank) => {
+    if(rank === 'A') return 11;
+
+    result = Number(rank) ? parseInt(rank):10;
+    return result;
+}
+
+const buildDeck = (deck) => {
+    ranks.forEach((rank)=>{
+        suits.forEach((suit)=>{
+            let card = {
+                'rank': rank,
+                'suit': suit,
+                'value': calcValue(rank)
+            };
+            deck.push(card);
+        });
+    });    
+}
+
+buildDeck(deck);
+console.log(deck);
+
+        </script>
+    </body>
+</html>
