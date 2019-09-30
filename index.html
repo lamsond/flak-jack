@@ -148,6 +148,18 @@ const deal = () => {
     renderDeck();
 }
 
+const hit = () => {
+    let playerHandDiv = document.querySelector('.player-hand');
+    let newCard = document.createElement('div');
+    newCard.classList.add('card');
+    newCard.classList.add('up-card');
+    newCard.classList.add('player-card');
+
+    playerHand.push(deck.pop());
+    playerHandDiv.appendChild(newCard); 
+    renderDeck();
+}
+
 const renderDeck = () => {
     const playerCards = document.querySelectorAll('.player-card');
     const compCards = document.querySelectorAll('.comp-card');
@@ -160,7 +172,9 @@ const renderDeck = () => {
 }
 
 const dealBtn = document.querySelector('.deal-btn');
+const hitBtn = document.querySelector('.hit-btn');
 dealBtn.addEventListener('click', deal);
+hitBtn.addEventListener('click', hit);
 
 buildDeck(deck);
 knuthShuffle(deck);
