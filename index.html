@@ -83,7 +83,7 @@ body{
                 </div>
                 <div class='hand player-hand'>
                         <div class='card down-card player-card'>
-
+                            
                         </div>
                         <div class='card up-card player-card'>
                             
@@ -100,19 +100,10 @@ body{
         </div>
         <script>
 const deck = [];
-const computerHand = [];
+const compHand = [];
 const playerHand = [];
 const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 const suits = ['\u2660', '\u2665', '\u2666', '\u2663'];
-
-const Card = (rank, suit) => {
-    this.rank = rank;
-    this.suit = suit;
-}
-
-const Hand = () => {
-    this.cards = [];
-}
 
 const calcValue = (rank) => {
     if(rank === 'A') return 11;
@@ -148,12 +139,24 @@ const knuthShuffle = (deck) => {
 const deal = () => {
     for(let i = 0; i < 2; i++){
         playerHand.push(deck.pop());
-        computerHand.push(deck.pop());
+        compHand.push(deck.pop());
     }
     console.log("player hand: ");
     console.log(playerHand);
     console.log("computer hand");
-    console.log(computerHand);
+    console.log(compHand);
+    renderDeck();
+}
+
+const renderDeck = () => {
+    const playerCards = document.querySelectorAll('.player-card');
+    const compCards = document.querySelectorAll('.comp-card');
+    playerCards.forEach((card, i) => {
+        card.innerHTML = playerHand[i].rank + playerHand[i].suit;
+    });
+    compCards.forEach((card, i) => {
+        card.innerHTML = compHand[i].rank + compHand[i].suit;
+    });
 }
 
 const dealBtn = document.querySelector('.deal-btn');
