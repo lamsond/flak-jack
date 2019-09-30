@@ -4,7 +4,12 @@
         <meta charset='utf-8'>
         <title>flak-jack</title>
         <style>
-        
+body{
+    display: flex;
+    font-family: Helvetica;
+}
+
+
         </style>
     </head>
     <body>
@@ -80,12 +85,22 @@
         </div>
         <script>
 const deck = [];
+const computerHand = [];
+const playerHand = [];
 const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 const suits = ['\u2660', '\u2665', '\u2666', '\u2663'];
 
+const Card = (rank, suit) => {
+    this.rank = rank;
+    this.suit = suit;
+}
+
+const Hand = () => {
+    this.cards = [];
+}
+
 const calcValue = (rank) => {
     if(rank === 'A') return 11;
-
     result = Number(rank) ? parseInt(rank):10;
     return result;
 }
@@ -115,9 +130,23 @@ const knuthShuffle = (deck) => {
     }
 }
 
+const deal = () => {
+    for(let i = 0; i < 2; i++){
+        playerHand.push(deck.pop());
+        computerHand.push(deck.pop());
+    }
+    console.log("player hand: ");
+    console.log(playerHand);
+    console.log("computer hand");
+    console.log(computerHand);
+}
+
+const dealBtn = document.querySelector('.deal-btn');
+dealBtn.addEventListener('click', deal);
+
 buildDeck(deck);
 knuthShuffle(deck);
-console.log(deck);
+
 
         </script>
     </body>
