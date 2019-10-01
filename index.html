@@ -161,17 +161,26 @@ const deal = () => {
     console.log("computer hand");
     console.log(compHand);
     renderDeck();
+    hit(null);
 }
 
-const hit = () => {
+const hit = (e) => {
     let playerHandDiv = document.querySelector('.player-hand');
+    let compHandDiv = document.querySelector('.comp-hand');
     let newCard = document.createElement('div');
     newCard.classList.add('card');
     newCard.classList.add('up-card');
-    newCard.classList.add('player-card');
 
-    playerHand.push(deck.pop());
-    playerHandDiv.appendChild(newCard); 
+    if(e){
+        newCard.classList.add('player-card');
+        playerHand.push(deck.pop());
+        playerHandDiv.appendChild(newCard);
+    }
+    else{
+        newCard.classList.add('comp-card');
+        compHand.push(deck.pop());
+        compHandDiv.appendChild(newCard);
+    }
     renderDeck();
 }
 
@@ -183,8 +192,10 @@ const renderDeck = () => {
         card.style.color = ['\u2660', '\u2663'].includes(playerHand[i].suit) ? 'black':'red';
     });
     compCards.forEach((card, i) => {
-        card.innerHTML = compHand[i].rank + compHand[i].suit;
-        card.style.color = ['\u2660', '\u2663'].includes(compHand[i].suit) ? 'black':'red';
+        if(i > 0){
+            card.innerHTML = compHand[i].rank + compHand[i].suit;
+            card.style.color = ['\u2660', '\u2663'].includes(compHand[i].suit) ? 'black':'red';
+        }
     });
 }
 
